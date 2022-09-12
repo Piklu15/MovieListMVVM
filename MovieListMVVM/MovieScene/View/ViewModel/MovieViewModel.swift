@@ -8,7 +8,8 @@
 import Foundation
 
 class MovieViewModel: NSObject {
-    private var movieService: MovieServiceProtocol
+    let baseImagePath = "https://image.tmdb.org/t/p/w500"
+    private var movieService: MovieService
 
     var reloadTableView: (() -> Void)?
 
@@ -20,12 +21,12 @@ class MovieViewModel: NSObject {
         }
     }
 
-    init(movieService: MovieServiceProtocol = MovieService()) {
+    init(movieService: MovieService = MovieService()) {
         self.movieService = movieService
     }
 
-    func getMovies() {
-        movieService.getMovieList{ success, model, error in
+    func getMovieList(_ url: String = MovieService.defautlUrl) {
+        movieService.getMovieList(url) { success, model, error in
             if success, let movies = model {
                 self.fetchData(movies: movies)
             } else {
@@ -46,7 +47,7 @@ class MovieViewModel: NSObject {
     func createCellModel(movie: Movie) -> MovieCellViewModel {
         let title = movie.title
         let desc = movie.overview
-        let imageUrl = movie.imageUrl
+        let imageUrl = baseImagePath + movie.imageUrl
 
         return MovieCellViewModel(title: title, dess: desc, image: AsyncImage(url: imageUrl))
     }

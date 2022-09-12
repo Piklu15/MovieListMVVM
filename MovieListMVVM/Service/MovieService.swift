@@ -7,22 +7,20 @@
 
 import Foundation
 
-protocol MovieServiceProtocol {
-    func getMovieList(completion: @escaping (_ success: Bool, _ results: Movies?, _ error: String?) -> ())
-}
-
-class MovieService: MovieServiceProtocol {
-    func getMovieList(completion: @escaping (Bool, Movies?, String?) -> ()) {
-        HttpRequestHelper().GET(url: "https://raw.githubusercontent.com/johncodeos-blog/MVVMiOSExample/main/demo.json", params: ["": ""], httpHeader: .application_json) { success, data in
+class MovieService {
+    static let defautlUrl = "https://api.themoviedb.org/3/search/movie?api_key=a42e5ead0dd5ae986e1f31cf352051d4&query=marvel"
+    func getMovieList(_ url: String, completion: @escaping (Bool, Movies?, String?) -> ()) {
+        HttpRequestHelper().GET(url: url) { success, data in
             if success {
                 do {
-                    let model = try JSONDecoder().decode(Movies.self, from: data!)
-                    completion(true, model, nil)
+                    let decodedModel = try JSONDecoder().decode(MovieResults.self, from: data!)
+
+                    completion(true, decodedModel.results, nil)
                 } catch {
-                    completion(false, nil, "Error: Trying to parse Employees to model")
+                    completion(false, nil, "parsing error")
                 }
             } else {
-                completion(false, nil, "Error: Employees GET Request failed")
+                completion(false, nil, "http error")
             }
         }
     }

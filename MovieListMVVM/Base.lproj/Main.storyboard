@@ -16,27 +16,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="a2Z-lw-5fo">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                            <searchBar contentMode="redraw" placeholder="Search Movie" translatesAutoresizingMaskIntoConstraints="NO" id="ycy-EE-z63">
+                                <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="T3A-92-hd8"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="LOU-yL-7cM">
+                                <rect key="frame" x="0.0" y="95" width="414" height="767"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="a2Z-lw-5fo" secondAttribute="trailing" id="ELH-2b-zI2"/>
-                            <constraint firstItem="a2Z-lw-5fo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="NeI-5v-iNv"/>
-                            <constraint firstItem="a2Z-lw-5fo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="VbW-yd-9tu"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="a2Z-lw-5fo" secondAttribute="bottom" id="eex-GB-GnF"/>
+                            <constraint firstItem="LOU-yL-7cM" firstAttribute="top" secondItem="ycy-EE-z63" secondAttribute="bottom" id="FNK-7N-Pch"/>
+                            <constraint firstItem="ycy-EE-z63" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Rsi-r7-rgc"/>
+                            <constraint firstItem="ycy-EE-z63" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Stv-PU-gNp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="LOU-yL-7cM" secondAttribute="trailing" id="Wdj-AP-qeB"/>
+                            <constraint firstItem="ycy-EE-z63" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dvz-37-aAL"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LOU-yL-7cM" secondAttribute="bottom" id="koO-J3-9h3"/>
+                            <constraint firstItem="LOU-yL-7cM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="xgW-gg-4hm"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="movieTableView" destination="a2Z-lw-5fo" id="Pk4-GW-ioU"/>
+                        <outlet property="movieTableView" destination="LOU-yL-7cM" id="duH-Km-e2k"/>
+                        <outlet property="searchBar" destination="ycy-EE-z63" id="vcl-bF-f9g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="90" y="94"/>
+            <point key="canvasLocation" x="89.855072463768124" y="93.75"/>
         </scene>
     </scenes>
     <resources>
